@@ -10,6 +10,13 @@ Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
 require('./app')
 
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :active_record
+  end
+end
+
 RSpec.configure do |config|
   config.after(:each) do
     Store.all.each do |store|

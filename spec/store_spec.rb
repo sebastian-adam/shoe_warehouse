@@ -1,5 +1,5 @@
 require('spec_helper')
 
-describe 'List' do
-  it {should have_many(:brands)}
+describe(Store) do
+  it { should have_many(:brands) }
 end

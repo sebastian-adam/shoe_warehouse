@@ -1,5 +1,6 @@
 require('spec_helper')
+require('shoulda-matchers')
 
-describe 'List' do
-  it {should have_many(:stores)}
+describe(Brand) do
+  it { should have_many(:stores) }
 end

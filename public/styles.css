@@ -1,0 +1,88 @@
+/*HEADER*/
+
+.nav-wrapper, .nav-wrapper form, .nav-wrapper form .input-field {
+  height: 100%;
+  border: 0px solid black;
+}
+
+#search_nav {
+  width:30%;
+  float: left;
+}
+
+#main_nav {
+  position: absolute;
+  left: 30%;
+  width:70%;
+}
+
+#main_header {
+  margin-left: -40%;
+}
+
+.logo_font  {
+  font-family: 'Bangers', cursive;
+  letter-spacing: 1em;
+}
+
+.custom-active {
+  border-bottom: 1px solid red;
+}
+
+
+/*GENERAL*/
+
+.main {
+  padding-top: 100px;
+  width: 100%;
+}
+
+.body {
+  clear: both;
+  width: 100%;
+}
+
+.prompt {
+  text-align: center;
+  color: #e91e63;
+}
+
+
+/*BRANDS*/
+
+img {
+  height: 70px;
+  padding: 10px 10px;
+}
+
+#brand-wrapper {
+  width: 100%;
+  height: 70px;
+  float: left;
+  border-bottom: 1px solid black;
+}
+
+.assigned-brand {
+  -webkit-filter: opacity(50%); filter: opacity(50%);
+}
+
+/*STORES*/
+
+#store-wrapper {
+  border: 1px solid black;
+  box-shadow: 10px 10px 5px #888888;
+  background: silver; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(silver, white); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(silver, white); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(silver, white); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(silver, white); /* Standard syntax */
+  margin: 0 20px 30px;
+}
+
+a:hover #store-wrapper {
+  background: lightgrey; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(lightgrey, white); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(lightgrey, white); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(lightgrey, white); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(lightgrey, white); /* Standard syntax */
+}
