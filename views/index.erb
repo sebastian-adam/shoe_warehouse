@@ -39,7 +39,7 @@
       <div class="row">
         <% @stores.each do |store| %>
           <div class="col s4">
-            <a class="black-text" href="/stores/<%=store.id()%>">
+            <a class="black-text" href="/stores/<%=store.id()%>/edit">
               <div id="store-wrapper">
                 <h1 class="thick center"><%= store.name %></h1>
                 <h6><%= store.location %></h6>

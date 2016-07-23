@@ -1,0 +1,61 @@
+<nav id="search_nav">
+  <div class="nav-wrapper black z-depth-0">
+     <form action="/search" id="search-form">
+        <div class="input-field">
+          <input id="search" class="black white-text" type="search" name="tag_name" required>
+          <label for="search"><i class="material-icons red-text">search</i></label>
+        </div>
+      </form>
+  </div>
+</nav>
+<nav id="main_nav">
+  <div class="navbar-fixed black z-depth-0">
+    <div class="col s8 offset-s3">
+      <div id="main_header" class="nav-wrapper amber lighten-5">
+        <a href="/autogenerate" class="brand-logo center white-text logo_font">Sneak Dis</a>
+        <ul class="right hide-on-med-and-down">
+          <li class="active"><a href="/" class="white-text accent-4 thin"><span class="custom-active">HOME</span></a></li>
+          <li>
+            <form action="/stores/new" method="post"><a href="#">
+              <button class="waves-effect waves-light btn red" type="submit" name="button">Add Store</button></a>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="body">
+  <% if @brands.any? %>
+    <div id="brand-wrapper" class="center">
+      <% @brands.each do |brand| %>
+        <a href="/search?brand_name=<%=brand.name()%>"><img class="" src="<%=brand.image()%>" alt="brand logo"/></a>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="center main">
+    <% if @stores.any? %>
+      <div class="row">
+        <% @stores.each do |store| %>
+          <div class="col s4">
+            <a class="black-text" href="/stores/<%=store.id()%>">
+              <div id="store-wrapper">
+                <h1 class="thick center"><%= store.name %></h1>
+                <h6><%= store.location %></h6>
+                <h6><%= store.phone %></h6>
+                <h6>Hours: <%= store.open_time %>AM to <%= store.close_time %>PM</h6>
+                <h3 class="amber">Brands in stock</h3>
+                <% store.brands.each do |brand| %>
+                <img class="assigned-brand" src="<%=brand.image()%>" alt="brand logo"/>
+                <% end %>
+              </div>
+            </a>
+          </div>
+        <% end %>
+      </div>
+    <%else%>
+      <h3 class="center">Click "SNEAK DIS" to begin <i class="material-icons">navigation</i></h3>
+    <%end%>
+  </div>
+</div>

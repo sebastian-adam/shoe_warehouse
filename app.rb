@@ -8,32 +8,6 @@ get('/') do
   erb(:index)
 end
 
-get('/stores/:id') do
-  @store = Store.find(params['id'])
-  @brands = Brand.all.order('name ASC')
-  @unused_brands = @brands - @store.brands
-  erb(:store)
-end
-
-get('/stores/:id/edit') do
-  @store = Store.find(params['id'])
-  @brands = Brand.all.order('name ASC')
-  @tags = Tag.all
-  erb(:store_form)
-end
-
-get('/stores/:id/stores/edit') do
-  @store = Store.find(params['id'])
-  erb(:store_edit)
-end
-
-get('/stores/:id/brands/edit') do
-  @store = Store.find(params['id'])
-  @brands = Brand.all
-  @unused_brands = @brands - @store.brands
-  erb(:brand_edit)
-end
-
 get('/autogenerate') do
   footlocker = Store.create(name: 'Foot Locker', location: '9459 SW Washington St, Tigard, OR 97223', phone: '503-684-2053', open_time: '9', close_time: '8');
   champs = Store.create(name: 'Champs', location: '12000 SE 82nd Ave, Happy Valley, OR 97086', phone: '503-772-9012', open_time: '7', close_time: '10');
@@ -44,6 +18,20 @@ get('/autogenerate') do
   footlocker.brands.push(timberland)
   champs.brands.push(adidas)
   redirect "/"
+end
+
+get('/stores/:id/edit') do
+  @store = Store.find(params['id'])
+  @brands = Brand.all.order('name ASC')
+  @unused_brands = @brands - @store.brands
+  erb(:store_edit)
+end
+
+get('/stores/:id/brands/edit') do
+  @store = Store.find(params['id'])
+  @brands = Brand.all
+  @unused_brands = @brands - @store.brands
+  erb(:store_form)
 end
 
 post('/stores/new') do
