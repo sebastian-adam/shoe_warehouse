@@ -1,0 +1,53 @@
+<nav id="search_nav">
+  <div class="nav-wrapper black z-depth-0">
+     <form action="/search" id="search-form">
+        <div class="input-field">
+          <input id="search" class="black white-text" type="search" name="tag_name" required>
+          <label for="search"><i class="material-icons red-text">search</i></label>
+        </div>
+      </form>
+  </div>
+</nav>
+<nav id="main_nav">
+  <div class="navbar-fixed black z-depth-0">
+    <div class="col s8 offset-s3">
+      <div id="main_header" class="nav-wrapper amber lighten-5">
+        <a href="/autogenerate" class="brand-logo center white-text logo_font">Sneak Dis</a>
+        <ul class="right hide-on-med-and-down">
+          <li class="active"><a href="/stores/<%= @store.id() %>" class="white-text accent-4 thin"><span class="custom-active"><%= @store.name %></span></a></li>
+          <li class=""><a href="/" class="white-text accent-4 thin"><span class="">HOME</span></a></li>
+          <li>
+            <form action="/stores/new" method="post"><a href="#">
+              <button class="waves-effect waves-light btn red" type="submit" name="button">Add Store</button></a>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="body">
+  <div class="center main">
+    <div class="row">
+      <div class="col s4 offset-s4">
+        <a class="black-text" href="/stores/<%= @store.id() %>/edit">
+          <div id="store-wrapper">
+            <h1 class="thick center"><%= @store.name %></h1>
+            <h6><%= @store.location %></h6>
+            <h6><%= @store.phone %></h6>
+            <h6>Hours: <%= @store.open_time %>AM to <%= @store.close_time %>PM</h6>
+            <h3 class="amber">Brands in stock</h3>
+            <% if @store.brands.any? %>
+              <% @store.brands.each do |brand| %>
+                <img class="assigned-brand" src="<%=brand.image()%>" alt="brand logo"/>
+              <% end %>
+            <% else %>
+              <h6>No brands on file. Please add one below.</h6>
+            <% end %>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

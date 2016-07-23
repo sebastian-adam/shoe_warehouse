@@ -27,13 +27,6 @@ get('/stores/:id/edit') do
   erb(:store_edit)
 end
 
-get('/stores/:id/brands/edit') do
-  @store = Store.find(params['id'])
-  @brands = Brand.all
-  @unused_brands = @brands - @store.brands
-  erb(:store_form)
-end
-
 post('/stores/new') do
   @store = Store.create(name: params['name_store'], location: params['location'], phone: params['phone'], open_time: params['open_time'], close_time: params['close_time']);
   redirect "stores/#{@store.id()}"
