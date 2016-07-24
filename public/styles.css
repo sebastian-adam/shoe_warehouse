@@ -66,6 +66,18 @@ img {
   -webkit-filter: opacity(50%); filter: opacity(50%);
 }
 
+.add_brand_button {
+  background:none!important;
+  border:none;
+  padding:0!important;
+  font: inherit;
+  cursor: pointer;
+}
+
+.add_brand_form {
+  display: inline;
+}
+
 /*STORES*/
 
 #store-wrapper {
@@ -85,4 +97,8 @@ a:hover #store-wrapper {
   background: -o-linear-gradient(lightgrey, white); /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(lightgrey, white); /* For Firefox 3.6 to 15 */
   background: linear-gradient(lightgrey, white); /* Standard syntax */
+}
+
+.store-name-input {
+  font-size: 50px;
 }
