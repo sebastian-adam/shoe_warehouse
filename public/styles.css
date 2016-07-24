@@ -47,6 +47,15 @@
   color: #e91e63;
 }
 
+.inline-element {
+  display: inline;
+}
+
+.inline-button {
+  margin-bottom: 15px;
+  float: right;
+}
+
 
 /*BRANDS*/
 

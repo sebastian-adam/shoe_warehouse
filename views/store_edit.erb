@@ -14,10 +14,10 @@
       <div id="main_header" class="nav-wrapper amber lighten-5">
         <a href="/autogenerate" class="brand-logo center white-text logo_font">Sneak Dis</a>
         <ul class="right hide-on-med-and-down">
-          <li class="active"><a href="/stores/<%= @store.id() %>" class="white-text accent-4 thin"><span class="custom-active"><%= @store.name %></span></a></li>
+          <li class="active"><a href="/stores/<%= @store.id() %>/edit" class="white-text accent-4 thin"><span class="custom-active"><%= @store.name %></span></a></li>
           <li class=""><a href="/" class="white-text accent-4 thin"><span class="">HOME</span></a></li>
           <li>
-            <form action="/stores/new" method="post"><a href="#">
+            <form action="/stores/new" method="get"><a href="#">
               <button class="waves-effect waves-light btn red" type="submit" name="button">Add Store</button></a>
             </form>
           </li>
@@ -31,16 +31,27 @@
   <div class="center ">
     <div class="row">
       <div class="col s4 offset-s2">
-        <h3>Edit Store</h3>
-        <form class="" action="" method="post">
+        <br><br>
+        <h3 class="inline-element">Edit Store Profile</h3>
+        <form action="/stores/<%=@store.id%>/delete" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <button class="waves-effect waves-light btn amber inline-element inline-button" type="submit" name="button">DELETE</button>
+        </form>
+        <form class="" action="/stores/<%= @store.id %>" method="post">
+          <input type="hidden" name="_method" value="patch">
           <div id="store-wrapper">
-            <input type="hidden" name="_method" value="patch">
-            <label for="name">Name</label>
-            <input class="center" type="text" name="name" value="<%= @store.name %>">
-            <label for="location">Location</label>
-            <input class="center" type="text" name="location" value="<%= @store.location %>">
-            <label for="phone">Phone</label>
-            <input class="center" type="text" name="phone" value="<%= @store.phone %>">
+            <div class="col s12">
+              <label for="name">Name</label>
+              <input class="center" type="text" name="name" value="<%= @store.name %>">
+            </div>
+            <div class="col s12">
+              <label for="location">Location</label>
+              <input class="center" type="text" name="location" value="<%= @store.location %>">
+            </div>
+            <div class="col s12">
+              <label for="phone">Phone</label>
+              <input class="center" type="text" name="phone" value="<%= @store.phone %>">
+            </div>
             <div class="row">
               <div class="col s6">
                 <label for="open_time">Opens (AM)</label>
@@ -57,22 +68,26 @@
                 <img class="assigned-brand" src="<%=brand.image()%>" alt="brand logo"/>
               <% end %>
             <% else %>
-              <h6>No brands on file. Please add one below.</h6>
+              <h6 class="red-text">No brands on file. Please update.</h6><br>
             <% end %>
           </div>
-          <button class="waves-effect waves-light btn red" type="submit" name="button">SAVE</button>
+          <button class="waves-effect waves-light btn red" type="submit" name="button">SAVE CHANGES</button>
         </form>
       </div>
       <div class="col s4">
-        <br><br><br>
+        <br><br><br><br>
         <h3>Add Brands</h3>
         <div class="center">
-          <% @unused_brands.each() do |unused_brand| %>
-            <form class="center add_brand_form" action="/brands/new" method="post">
-              <input type="hidden" name="store_id" value="<%= @store.id() %>">
-              <input type="hidden" name="brand_name" value="<%=unused_brand.name%>">
-              <button class="add_brand_button" type="submit" name="button"><img class="assigned-brand" src="<%= unused_brand.image() %>" alt="brand logo"/></button>
-            </form>
+          <% if @unused_brands.any? %>
+            <% @unused_brands.each() do |unused_brand| %>
+              <form class="center add_brand_form" action="/brands/new" method="post">
+                <input type="hidden" name="store_id" value="<%= @store.id() %>">
+                <input type="hidden" name="brand_name" value="<%=unused_brand.name%>">
+                <button class="add_brand_button" type="submit" name="button"><img class="assigned-brand" src="<%= unused_brand.image() %>" alt="brand logo"/></button>
+              </form>
+            <% end %>
+          <% else %>
+            <h6 class="red-text">Store carries all brands on file.</h6>
           <% end %>
         </div>
         <br>

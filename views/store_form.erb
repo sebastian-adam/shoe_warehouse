@@ -1,0 +1,66 @@
+<nav id="search_nav">
+  <div class="nav-wrapper black z-depth-0">
+     <form action="/search" id="search-form">
+        <div class="input-field">
+          <input id="search" class="black white-text" type="search" name="tag_name" required>
+          <label for="search"><i class="material-icons red-text">search</i></label>
+        </div>
+      </form>
+  </div>
+</nav>
+<nav id="main_nav">
+  <div class="navbar-fixed black z-depth-0">
+    <div class="col s8 offset-s3">
+      <div id="main_header" class="nav-wrapper amber lighten-5">
+        <a href="/autogenerate" class="brand-logo center white-text logo_font">Sneak Dis</a>
+        <ul class="right hide-on-med-and-down">
+          <li class="active"><a href="/stores/new" class="white-text accent-4 thin"><span class="custom-active">New</span></a></li>
+          <li class=""><a href="/" class="white-text accent-4 thin"><span class="">HOME</span></a></li>
+          <li>
+            <form action="/stores/new" method="get"><a href="#">
+              <button class="waves-effect waves-light btn red" type="submit" name="button">Add Store</button></a>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="body">
+  <div class="center ">
+    <div class="row">
+      <div class="col s4 offset-s4">
+        <br><br>
+        <h3 class="inline-element">New Store Profile</h3>
+        <form class="" action="/stores/new" method="post">
+          <div id="store-wrapper">
+            <div class="col s12">
+              <label for="name">Name</label>
+              <input class="center" type="text" name="name">
+            </div>
+            <div class="col s12">
+              <label for="location">Location</label>
+              <input class="center" type="text" name="location">
+            </div>
+            <div class="col s12">
+              <label for="phone">Phone</label>
+              <input class="center" type="text" name="phone">
+            </div>
+            <div class="row">
+              <div class="col s6">
+                <label for="open_time">Opens (AM)</label>
+                <input class="center" type="text" name="open_time">
+              </div>
+              <div class="col s6">
+                <label for="close_time">Closes (PM)</label>
+                <input class="center" type="text" name="close_time">
+              </div>
+            </div>
+          </div>
+          <button class="waves-effect waves-light btn red" type="submit" name="button">SAVE CHANGES</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

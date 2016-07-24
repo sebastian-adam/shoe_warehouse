@@ -16,7 +16,7 @@
         <ul class="right hide-on-med-and-down">
           <li class="active"><a href="/" class="white-text accent-4 thin"><span class="custom-active">HOME</span></a></li>
           <li>
-            <form action="/stores/new" method="post"><a href="#">
+            <form action="/stores/new" method="get"><a href="#">
               <button class="waves-effect waves-light btn red" type="submit" name="button">Add Store</button></a>
             </form>
           </li>
@@ -46,8 +46,12 @@
                 <h6><%= store.phone %></h6>
                 <h6>Hours: <%= store.open_time %>AM to <%= store.close_time %>PM</h6>
                 <h3 class="amber">Brands in stock</h3>
-                <% store.brands.each do |brand| %>
-                <img class="assigned-brand" src="<%=brand.image()%>" alt="brand logo"/>
+                <% if store.brands.any? %>
+                  <% store.brands.each do |brand| %>
+                    <img class="assigned-brand" src="<%=brand.image()%>" alt="brand logo"/>
+                  <% end %>
+                <% else %>
+                  <h6 class="red-text">No brands on file. Please update.</h6><br>
                 <% end %>
               </div>
             </a>
