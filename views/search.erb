@@ -1,10 +1,10 @@
 <nav id="search_nav">
   <div class="nav-wrapper black z-depth-0">
      <form action="/search" id="search-form">
-        <div class="input-field">
-          <input id="search" class="black white-text" type="search" name="brand_name" required>
-          <label for="search"><i class="material-icons red-text">search</i>SEARCH BY BRAND</label>
-        </div>
+       <div class="input-field">
+         <input id="search" class="black white-text" type="search" name="brand_name" required>
+         <label for="search"><i class="material-icons red-text">search</i>SEARCH BY BRAND</label>
+       </div>
       </form>
   </div>
 </nav>
@@ -14,7 +14,8 @@
       <div id="main_header" class="nav-wrapper amber lighten-5">
         <a href="/autogenerate" class="brand-logo center white-text logo_font">Sneak Dis</a>
         <ul class="right hide-on-med-and-down">
-          <li class="active"><a href="/" class="white-text accent-4 thin"><span class="custom-active">HOME</span></a></li>
+          <li class="active"><a href="/search?tag_name=<%=@brand.name()%>" class="white-text accent-4 thin"><span class="custom-active"><%= @brand.name %></span></a></li>
+          <li class=""><a href="/" class="white-text accent-4 thin"><span class="">HOME</span></a></li>
           <li>
             <form action="/stores/new" method="get"><a href="#">
               <button class="waves-effect waves-light btn red" type="submit" name="button">Add Store</button></a>
@@ -35,9 +36,9 @@
     </div>
   <% end %>
   <div class="center main">
-    <% if @stores.any? %>
+    <% if @matched_stores.any? %>
       <div class="row">
-        <% @stores.each do |store| %>
+        <% @matched_stores.each do |store| %>
           <div class="col s4">
             <a class="black-text" href="/stores/<%=store.id()%>/edit">
               <div id="store-wrapper">
@@ -58,8 +59,6 @@
           </div>
         <% end %>
       </div>
-    <%else%>
-      <h3 class="center">Click "SNEAK DIS" to begin <i class="material-icons">navigation</i></h3>
     <%end%>
   </div>
 </div>

@@ -32,6 +32,17 @@ get('/stores/:id/edit') do
   erb(:store_edit)
 end
 
+get('/search') do
+  if Store.includes(:brands).where('brands.name' => params['brand_name']).any?
+    @matched_stores = Store.includes(:brands).where('brands.name' => params['brand_name']).all()
+    @brand = Brand.find_by_name(params['brand_name'])
+    @brands = Brand.all()
+    erb(:search)
+  else
+    redirect "/"
+  end
+end
+
 post('/stores/new') do
   @store = Store.create(name: params['name'], location: params['location'], phone: params['phone'], open_time: params['open_time'], close_time: params['close_time']);
   redirect "/"

@@ -22,7 +22,7 @@ RSpec.configure do |config|
     Store.all.each do |store|
       store.destroy()
     end
-    Brand.all.each do |ingredient|
+    Brand.all.each do |brand|
       brand.destroy()
     end
   end

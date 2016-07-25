@@ -9,44 +9,60 @@ describe 'home route', type: :feature do
     expect(page).to have_content('Champs')
   end
 
-  it 'should route to "recipes/:id/edit"' do
+  it 'should list out brands' do
     visit('/')
-    click_on('New Recipe')
-    expect(page).to have_content('Add Ingredients')
-  end
-
-  it 'should route to "recipes/:id/edit"' do
-    new_recipe = Recipe.create(name: "Curry", instructions: "Go to nearest foodcart", rating: 4, image: "http://www.wyvernacademy.co.uk/wp-content/uploads/2015/11/Mild_Chicken_Curry_0000x0000_0.jpg")
+    page.should have_no_css('img')
+    nike = Brand.create(name: 'Nike', image: 'http://www.screenitltd.com/sites/default/files/brands/nike-logo.png')
+    timberland = Brand.create(name: 'Timberland', image: 'http://images.theexecutiveadvertising.com/images/manflogo/timberland.png')
     visit('/')
-    click_on('Curry')
-    expect(current_url).to eq("http://www.example.com/recipes/#{new_recipe.id}")
+    page.should have_css('img')
   end
 
-  it 'should update recipe on submit' do
-    new_recipe = Recipe.create(name: "Curry", instructions: "Go to nearest foodcart", rating: 4, image: "http://www.wyvernacademy.co.uk/wp-content/uploads/2015/11/Mild_Chicken_Curry_0000x0000_0.jpg")
-    visit("/recipes/#{new_recipe.id()}/edit")
-    fill_in('name', with: "Yellow Curry")
-    fill_in('instructions', with: "Go to nearest indian restaurant")
-    fill_in('rating', with: 5)
-    click_on('Submit')
-    expect(page).to have_content("Go to nearest indian restaurant")
+  it 'should route to "stores/new"' do
+    visit('/')
+    click_button('Add Store')
+    expect(page).to have_content('New Store Profile')
   end
 
-  it 'should create ingredient on "Add Ingredient"' do
-    new_recipe = Recipe.create(name: "Curry", instructions: "Go to nearest foodcart", rating: 4, image: "http://www.wyvernacademy.co.uk/wp-content/uploads/2015/11/Mild_Chicken_Curry_0000x0000_0.jpg")
-    visit("/recipes/#{new_recipe.id()}/edit")
-    fill_in('ingredient_name', with: "Egg")
-    fill_in('amount', with: 10)
-    fill_in('unit', with: "")
-    click_on('Add Ingredient')
-    expect(page).to have_content("Egg")
+  it 'should add store on submit' do
+    visit("/stores/new")
+    fill_in('name', with: "Champs")
+    fill_in('location', with: "9459 SW Washington St, Tigard, OR 97223")
+    fill_in('phone', with: '503-684-2053')
+    fill_in('open_time', with: '10')
+    fill_in('close_time', with: '8')
+    click_button('ADD STORE')
+    expect(page).to have_content("9459 SW Washington St, Tigard, OR 97223")
   end
 
-  it 'should create ingredient on "Add Ingredient"' do
-    new_recipe = Recipe.create(name: "Curry", instructions: "Go to nearest foodcart", rating: 4, image: "http://www.wyvernacademy.co.uk/wp-content/uploads/2015/11/Mild_Chicken_Curry_0000x0000_0.jpg")
-    visit("/recipes/#{new_recipe.id()}/edit")
-    fill_in('tag_name', with: "italian")
-    click_on('Add Tag')
-    expect(page).to have_content("italian")
+  it 'should route to "stores/:id/edit"' do
+    footlocker = Store.create(name: 'Foot Locker', location: '9459 SW Washington St, Tigard, OR 97223', phone: '503-684-2053', open_time: '9', close_time: '8');
+    visit("/stores/#{footlocker.id()}/edit")
+    expect(page).to have_content('Edit Store Profile')
   end
+
+  it 'should edit store on submit' do
+    footlocker = Store.create(name: 'Foot Locker', location: '9459 SW Washington St, Tigard, OR 97223', phone: '503-684-2053', open_time: '9', close_time: '8');
+    visit("/stores/#{footlocker.id()}/edit")
+    fill_in('name', with: "Champs")
+    fill_in('location', with: "12000 SE 82nd Ave, Happy Valley, OR 97086")
+    fill_in('phone', with: '503-684-2053')
+    fill_in('open_time', with: '10')
+    fill_in('close_time', with: '8')
+    click_button('SAVE CHANGES')
+    visit('/')
+    expect(page).to have_content("12000 SE 82nd Ave, Happy Valley, OR 97086")
+  end
+
+  it 'should add brand on submit' do
+    visit('/')
+    page.should have_no_css('img')
+    footlocker = Store.create(name: 'Foot Locker', location: '9459 SW Washington St, Tigard, OR 97223', phone: '503-684-2053', open_time: '9', close_time: '8');
+    visit("/stores/#{footlocker.id()}/edit")
+    fill_in('brand_name', with: "Reebock")
+    click_button("Add Brand")
+    visit('/')
+    page.should have_css('img')
+  end
+
 end
