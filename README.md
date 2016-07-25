@@ -12,4 +12,4 @@ As a user, I do not want stores and shoes to be saved if I enter a blank name.
 
 passing tests store, and brand
 
-add search feature (from search nav and brand_img click)
+x add search feature (from search nav and brand_img click)

@@ -14,7 +14,7 @@
       <div id="main_header" class="nav-wrapper amber lighten-5">
         <a href="/autogenerate" class="brand-logo center white-text logo_font">Sneak Dis</a>
         <ul class="right hide-on-med-and-down">
-          <li class="active"><a href="/search?tag_name=<%=@brand.name()%>" class="white-text accent-4 thin"><span class="custom-active"><%= @brand.name %></span></a></li>
+          <li class="active"><a href="/search?brand_name=<%=@brand.name()%>" class="white-text accent-4 thin"><span class="custom-active"><%= @brand.name %></span></a></li>
           <li class=""><a href="/" class="white-text accent-4 thin"><span class="">HOME</span></a></li>
           <li>
             <form action="/stores/new" method="get"><a href="#">

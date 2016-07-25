@@ -11,11 +11,11 @@ describe 'home route', type: :feature do
 
   it 'should list out brands' do
     visit('/')
-    page.should have_no_css('img')
+    expect(page).to have_no_css('img')
     nike = Brand.create(name: 'Nike', image: 'http://www.screenitltd.com/sites/default/files/brands/nike-logo.png')
     timberland = Brand.create(name: 'Timberland', image: 'http://images.theexecutiveadvertising.com/images/manflogo/timberland.png')
     visit('/')
-    page.should have_css('img')
+    expect(page).to have_css('img')
   end
 
   it 'should route to "stores/new"' do
@@ -56,13 +56,13 @@ describe 'home route', type: :feature do
 
   it 'should add brand on submit' do
     visit('/')
-    page.should have_no_css('img')
+    expect(page).to have_no_css('img')
     footlocker = Store.create(name: 'Foot Locker', location: '9459 SW Washington St, Tigard, OR 97223', phone: '503-684-2053', open_time: '9', close_time: '8');
     visit("/stores/#{footlocker.id()}/edit")
-    fill_in('brand_name', with: "Reebock")
+    fill_in('brand_name_id', with: "Reebock")
     click_button("Add Brand")
     visit('/')
-    page.should have_css('img')
+    expect(page).to have_css('img')
   end
 
 end
