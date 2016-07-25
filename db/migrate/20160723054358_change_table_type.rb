@@ -1,4 +1,4 @@
-class ChangeTableTypeStore < ActiveRecord::Migration
+class ChangeTableType < ActiveRecord::Migration
   def change
     remove_column :stores, :open_time
     remove_column :stores, :close_time

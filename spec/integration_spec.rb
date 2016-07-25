@@ -15,7 +15,7 @@ describe 'home route', type: :feature do
     nike = Brand.create(name: 'Nike', image: 'http://www.screenitltd.com/sites/default/files/brands/nike-logo.png')
     timberland = Brand.create(name: 'Timberland', image: 'http://images.theexecutiveadvertising.com/images/manflogo/timberland.png')
     visit('/')
-    expect(page).to have_css('img')
+    expect(page).to have_xpath("//img[@src=\"#{nike.image}\"]")
   end
 
   it 'should route to "stores/new"' do
@@ -60,6 +60,7 @@ describe 'home route', type: :feature do
     footlocker = Store.create(name: 'Foot Locker', location: '9459 SW Washington St, Tigard, OR 97223', phone: '503-684-2053', open_time: '9', close_time: '8');
     visit("/stores/#{footlocker.id()}/edit")
     fill_in('brand_name_id', with: "Reebock")
+    fill_in('image', with: "http://www.screenitltd.com/sites/default/files/brands/nike-logo.png")
     click_button("Add Brand")
     visit('/')
     expect(page).to have_css('img')
