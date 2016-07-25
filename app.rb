@@ -61,7 +61,9 @@ end
 
 post('/brands/new') do
   @store = Store.find(params['store_id'])
-  if Brand.find_by_name(params['brand_name'])
+  if params['brand_name'] = ""
+    redirect "stores/#{params['store_id']}/edit"
+  elsif Brand.find_by_name(params['brand_name'])
     brand = Brand.find_by_name(params['brand_name'])
   else
     brand = Brand.create(name: params['brand_name'], image: params['image'])
