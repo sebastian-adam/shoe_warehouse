@@ -46,7 +46,7 @@
                 <h6><%= store.location %></h6>
                 <h6><%= store.phone %></h6>
                 <h6>Hours: <%= store.open_time %>AM to <%= store.close_time %>PM</h6>
-                <h3 class="amber">Brands in stock</h3>
+                <h3 class="amber">In stock</h3>
                 <% if store.brands.any? %>
                   <% store.brands.each do |brand| %>
                     <img class="assigned-brand" src="<%=brand.image()%>" alt="brand logo"/>

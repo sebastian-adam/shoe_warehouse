@@ -67,16 +67,13 @@ describe 'home route', type: :feature do
   end
 
   it 'should add brand on submit' do
-    visit('/')
-    expect(page).to have_no_css('img')
-    footlocker = Store.create(name: 'Foot Locker', location: '9459 SW Washington St, Tigard, OR 97223', phone: 'Reebock', open_time: '9', close_time: '8');
-    visit("/stores/#{footlocker.id()}/edit")
-    fill_in('brand_name_id', with: "Reebock")
+    visit('/brands/new')
+    fill_in('brand_name_input', with: "Reebock")
     fill_in('image', with: "http://www.screenitltd.com/sites/default/files/brands/nike-logo.png")
-    click_on("add-brand")
+    click_on("Add Brand")
     visit('/')
     reebock = Brand.find_by name: "Reebock"
-    expect(page).to have_content("Reebock")
+    expect(page).to have_xpath("//img[@src=\"#{reebock.image}\"]")
   end
 
 end

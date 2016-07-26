@@ -1,0 +1,50 @@
+<nav id="search_nav">
+  <div class="nav-wrapper black z-depth-0">
+     <form action="/search" id="search-form">
+       <div class="input-field">
+         <input id="search" class="black white-text" type="search" name="brand_name" required>
+         <label for="search"><i class="material-icons red-text">search</i>SEARCH BY BRAND</label>
+       </div>
+      </form>
+  </div>
+</nav>
+<nav id="main_nav">
+  <div class="navbar-fixed black z-depth-0">
+    <div class="col s8 offset-s3">
+      <div id="main_header" class="nav-wrapper amber lighten-5">
+        <a href="/autogenerate" class="brand-logo center white-text logo_font">Sneak Dis</a>
+        <ul class="right hide-on-med-and-down">
+          <li class="active"><a href="/stores/new" class="white-text accent-4 thin"><span class="custom-active">New Brand</span></a></li>
+          <li class=""><a href="/" class="white-text accent-4 thin"><span class="">HOME</span></a></li>
+          <li>
+            <form action="/stores/new" method="get"><a href="#">
+              <button class="waves-effect waves-light btn red" type="submit" name="button">Add Store</button></a>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="row">
+  <div class="col s4">
+    <br><br><br><br>
+    <h3 class="center">Add New Brand</h3>
+    <form id="new_brand_form" class="" action="/brands/new" method="post">
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="text" name="brand_name_input">
+          <label for="brand_name_input">Name:</label>
+        </div>
+        <div class="input-field col s12">
+          <input type="text" name="image">
+          <label for="image">Image (link):</label>
+        </div>
+      </div>
+      <div class="center">
+        <button id="add-brand" class="waves-effect waves-light btn red" type="submit" name="button">Add Brand</button>
+      </div>
+    </form>
+  </div>
+</div>
