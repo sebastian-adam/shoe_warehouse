@@ -82,7 +82,7 @@
             <% @unused_brands.each() do |unused_brand| %>
               <form class="center add_brand_form" action="/brands/new" method="post">
                 <input type="hidden" name="store_id" value="<%= @store.id() %>">
-                <input type="hidden" name="brand_name" value="<%=unused_brand.name%>">
+                <input type="hidden" id="brand-name" name="brand_name" value="<%=unused_brand.name%>">
                 <button class="add_brand_button" type="submit" name="button"><img class="assigned-brand" src="<%= unused_brand.image() %>" alt="brand logo"/></button>
               </form>
             <% end %>
@@ -92,12 +92,12 @@
         </div>
         <br>
         <h3>Add New Brand</h3>
-        <form class="" action="/brands/new" method="post">
+        <form id="new_brand_form" class="" action="/brands/new" method="post">
           <input type="hidden" name="store_id" value="<%= @store.id() %>">
           <div class="row">
             <div class="input-field col s12">
-              <input id="brand_name_id" type="text" name="brand_name">
-              <label for="brand_name">Name:</label>
+              <input id="brand_name_id" type="text" name="brand_name_id">
+              <label for="brand_name_id">Name:</label>
             </div>
             <div class="input-field col s12">
               <input type="text" name="image">
@@ -105,7 +105,7 @@
             </div>
           </div>
           <div class="center">
-            <button class="waves-effect waves-light btn red" onclick="submitBrands()" type="submit" name="button">Add Brand</button>
+            <button id="add-brand" class="waves-effect waves-light btn red" onclick="submitBrands()" type="submit" name="button">Add Brand</button>
           </div>
         </form>
       </div>

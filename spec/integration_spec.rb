@@ -18,6 +18,18 @@ describe 'home route', type: :feature do
     expect(page).to have_xpath("//img[@src=\"#{nike.image}\"]")
   end
 
+  it 'should save each store and brand name with capital first letters' do
+    footlocker = Store.create(name: 'foot locker', location: '9459 SW Washington St, Tigard, OR 97223', phone: '503-684-2053', open_time: '9', close_time: '8');
+    visit('/')
+    expect(page).to have_content('Foot Locker')
+  end
+
+  it 'should not save a store or brand if the input name is an empty string' do
+    footlocker = Store.create(name: '', location: '9459 SW Washington St, Tigard, OR 97223', phone: '503-684-2053', open_time: '9', close_time: '8');
+    visit('/')
+    expect(page).to have_no_content('9459 SW Washington St, Tigard, OR 97223')
+  end
+
   it 'should route to "stores/new"' do
     visit('/')
     click_button('Add Store')
@@ -57,13 +69,14 @@ describe 'home route', type: :feature do
   it 'should add brand on submit' do
     visit('/')
     expect(page).to have_no_css('img')
-    footlocker = Store.create(name: 'Foot Locker', location: '9459 SW Washington St, Tigard, OR 97223', phone: '503-684-2053', open_time: '9', close_time: '8');
+    footlocker = Store.create(name: 'Foot Locker', location: '9459 SW Washington St, Tigard, OR 97223', phone: 'Reebock', open_time: '9', close_time: '8');
     visit("/stores/#{footlocker.id()}/edit")
     fill_in('brand_name_id', with: "Reebock")
     fill_in('image', with: "http://www.screenitltd.com/sites/default/files/brands/nike-logo.png")
-    click_button("Add Brand")
+    click_on("add-brand")
     visit('/')
-    expect(page).to have_css('img')
+    reebock = Brand.find_by name: "Reebock"
+    expect(page).to have_content("Reebock")
   end
 
 end
